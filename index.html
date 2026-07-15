@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juan Carlos Cantillo Suárez</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* VARIABLES & THEMES */
+        :root {
+            /* Dark Theme (Default) */
+            --bg-gradient: linear-gradient(135deg, #090d16 0%, #0f172a 100%);
+            --bg-color: #0f172a;
+            --panel-bg: rgba(15, 23, 42, 0.7);
+            --panel-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-light: #64748b;
+
+            --accent: #38bdf8;
+            --accent-secondary: #818cf8;
+            --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            --accent-light: rgba(56, 189, 248, 0.1);
+
+            --badge-bg: rgba(30, 41, 59, 0.8);
+            --badge-text: #e2e8f0;
+            --badge-border: rgba(255, 255, 255, 0.05);
+            --badge-hover: rgba(56, 189, 248, 0.15);
+
+            --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            --timeline-line: #334155;
+            --card-hover: rgba(30, 41, 59, 0.4);
+            --skill-bar-bg: #1e293b;
+            --highlight-bg: rgba(56, 189, 248, 0.05);
+            --highlight-border: #38bdf8;
+        }
+
+        [data-theme="light"] {
+            /* Light Theme */
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --bg-color: #f8fafc;
+            --panel-bg: rgba(255, 255, 255, 0.8);
+            --panel-border: rgba(15, 23, 42, 0.06);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --text-light: #64748b;
+
+            --accent: #0284c7;
+            --accent-secondary: #4f46e5;
+            --accent-gradient: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+            --accent-light: rgba(2, 132, 199, 0.08);
+
+            --badge-bg: rgba(241, 245, 249, 0.8);
+            --badge-text: #334155;
+            --badge-border: rgba(15, 23, 42, 0.04);
+            --badge-hover: rgba(2, 132, 199, 0.1);
+
+            --shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.03);
+            --timeline-line: #cbd5e1;
+            --card-hover: rgba(241, 245, 249, 0.6);
+            --skill-bar-bg: #e2e8f0;
+            --highlight-bg: rgba(2, 132, 199, 0.04);
+            --highlight-border: #0284c7;
+        }
+
+        /* GLOBAL RESET */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 15px;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        /* LAYOUT UTILITIES */
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        .glass {
+            background: var(--panel-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--panel-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 20px;
+        }
+
+        /* NAVBAR / ACTIONS */
+        .actions-bar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--panel-border);
+            background: var(--panel-bg);
+            color: var(--text-main);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-action svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* HEADER */
+        .header-card {
+            padding: 40px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            opacity: 0.15;
+            pointer-events: none;
+            filter: blur(30px);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 24px;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.4);
+            letter-spacing: -1px;
+        }
+
+        .avatar-ring {
+            position: absolute;
+            inset: -6px;
+            border: 2px solid var(--accent);
+            opacity: 0.3;
+            border-radius: 28px;
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .header-info h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-info .title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-info .subtitle {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* GRID & SECTIONS */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+
+        .col-left,
+        .col-right {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .section-card {
+            padding: 32px;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 24px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--panel-border);
+            padding-bottom: 12px;
+        }
+
+        .section-title svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent-secondary);
+        }
+
+        /* CONTACT DETAILS */
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--panel-border);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .contact-item:hover {
+            background: var(--card-hover);
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .contact-icon {
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .contact-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .contact-value {
+            font-weight: 500;
+            color: var(--text-main);
+            font-size: 14px;
+        }
+
+        .copy-tooltip {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent-gradient);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .contact-item:hover .copy-tooltip {
+            opacity: 0.8;
+            transform: translateY(-50%) scale(1);
+        }
+
+        .contact-item.highlight-flash {
+            animation: pulseHighlight 0.6s ease;
+        }
+
+        @keyframes pulseHighlight {
+            0% {
+                box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 6px rgba(56, 189, 248, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(56, 189, 248, 0);
+            }
+        }
+
+        /* CORE SKILLS (PROGRESS BARS) */
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .skill-name {
+            color: var(--text-main);
+        }
+
+        .skill-pct {
+            color: var(--accent);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .skill-track {
+            height: 8px;
+            background: var(--skill-bar-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--accent-gradient);
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+
+        /* BADGE LISTS (TECNOLOGIAS / AI TOOLS) */
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .badge-chip {
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            border: 1px solid var(--badge-border);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .badge-chip:hover {
+            background: var(--badge-hover);
+            border-color: var(--accent);
+            color: var(--text-main);
+            transform: translateY(-1px);
+        }
+
+        /* EDUCATION & EXTRA SECTIONS */
+        .education-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .edu-item {
+            position: relative;
+            padding-left: 16px;
+            border-left: 2px solid var(--panel-border);
+        }
+
+        .edu-degree {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        .edu-institution {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* PROFESSIONAL PROFILE HIGHLIGHT */
+        .profile-card {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--highlight-border);
+            padding: 24px;
+            border-radius: 0 16px 16px 0;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* TIMELINE (EXPERIENCIA) */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: var(--timeline-line);
+        }
+
+        .timeline-item {
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -20px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            border: 3px solid var(--accent);
+            z-index: 10;
+            box-shadow: 0 0 0 4px var(--accent-light);
+        }
+
+        .timeline-card {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--panel-border);
+            border-radius: 14px;
+            transition: all 0.25s ease;
+        }
+
+        .timeline-card:hover {
+            background: var(--card-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .timeline-role {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--text-main);
+        }
+
+        .timeline-company {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--badge-bg);
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid var(--badge-border);
+        }
+
+        .timeline-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .timeline-bullets li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+
+        .timeline-bullets li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 11px;
+            color: var(--accent-secondary);
+            opacity: 0.8;
+        }
+
+        /* ACHIEVEMENTS LIST */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .achievement-card {
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--panel-border);
+            border-radius: 12px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .achievement-icon {
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .achievement-text {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* FEATURED COURSE CARD */
+        .featured-course {
+            padding: 24px;
+            border: 1px dashed var(--accent);
+            background: var(--accent-light);
+            border-radius: 16px;
+        }
+
+        .course-header {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .course-description {
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            body {
+                padding: 20px 10px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+
+            .header-card {
+                padding: 30px 20px;
+            }
+        }
+
+        /* PRINT STYLES - Ultra Clean PDF Export */
+        @media print {
+            body {
+                background: #fff !important;
+                color: #0f172a !important;
+                padding: 0 !important;
+                font-size: 12px;
+            }
+
+            .container {
+                max-width: 100% !important;
+            }
+
+            .actions-bar {
+                display: none !important;
+            }
+
+            .glass {
+                background: #fff !important;
+                backdrop-filter: none !important;
+                border: none !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                margin-bottom: 20px !important;
+            }
+
+            .header-card {
+                border-bottom: 2px solid #cbd5e1 !important;
+                padding-bottom: 20px !important;
+                margin-bottom: 20px !important;
+            }
+
+            .header-card::before {
+                display: none !important;
+            }
+
+            .avatar {
+                width: 80px !important;
+                height: 80px !important;
+                font-size: 30px !important;
+                border-radius: 16px !important;
+                background: #0f172a !important;
+                color: #fff !important;
+                box-shadow: none !important;
+            }
+
+            .avatar-ring {
+                display: none !important;
+            }
+
+            .header-info h1 {
+                font-size: 28px !important;
+                background: none !important;
+                -webkit-text-fill-color: #0f172a !important;
+                color: #0f172a !important;
+            }
+
+            .main-grid {
+                display: grid !important;
+                grid-template-columns: 280px 1fr !important;
+                gap: 20px !important;
+            }
+
+            .section-card {
+                padding: 0 !important;
+            }
+
+            .section-title {
+                font-size: 14px !important;
+                margin-bottom: 12px !important;
+                color: #0f172a !important;
+                border-bottom: 1.5px solid #cbd5e1 !important;
+                padding-bottom: 4px !important;
+            }
+
+            .section-title svg {
+                display: none !important;
+            }
+
+            .contact-item {
+                padding: 6px 0 !important;
+                border: none !important;
+                background: none !important;
+                pointer-events: none !important;
+            }
+
+            .contact-item:hover {
+                transform: none !important;
+            }
+
+            .copy-tooltip {
+                display: none !important;
+            }
+
+            .contact-icon {
+                color: #0f172a !important;
+            }
+
+            .skill-track {
+                height: 6px !important;
+                background: #f1f5f9 !important;
+                border: 1px solid #cbd5e1 !important;
+            }
+
+            .skill-progress {
+                background: #475569 !important;
+                box-shadow: none !important;
+            }
+
+            .badge-chip {
+                background: #f1f5f9 !important;
+                color: #334155 !important;
+                border: 1px solid #cbd5e1 !important;
+                padding: 3px 8px !important;
+                font-size: 11px !important;
+            }
+
+            .profile-card {
+                background: #f8fafc !important;
+                border-left: 3px solid #475569 !important;
+                padding: 12px !important;
+                color: #334155 !important;
+            }
+
+            .timeline::before {
+                left: 4px !important;
+                background: #e2e8f0 !important;
+            }
+
+            .timeline-dot {
+                left: -19px !important;
+                width: 10px !important;
+                height: 10px !important;
+                border-width: 2px !important;
+                border-color: #475569 !important;
+                box-shadow: none !important;
+            }
+
+            .timeline-card {
+                border: none !important;
+                background: none !important;
+                padding: 0 0 10px 0 !important;
+            }
+
+            .timeline-card:hover {
+                transform: none !important;
+            }
+
+            .timeline-date {
+                background: none !important;
+                border: none !important;
+                padding: 0 !important;
+                font-size: 11px !important;
+                color: #64748b !important;
+            }
+
+            .timeline-bullets li::before {
+                content: '•' !important;
+                color: #475569 !important;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr !important;
+                gap: 8px !important;
+            }
+
+            .achievement-card {
+                padding: 0 !important;
+                background: none !important;
+                border: none !important;
+            }
+
+            .achievement-icon {
+                display: none !important;
+            }
+
+            .achievement-text {
+                font-size: 12px !important;
+                color: #334155 !important;
+            }
+
+            .achievement-text::before {
+                content: '✓ ' !important;
+                font-weight: bold;
+                color: #475569;
+            }
+
+            .featured-course {
+                padding: 12px !important;
+                background: #f8fafc !important;
+                border: 1px dashed #cbd5e1 !important;
+            }
+
+            /* Page Break Optimization */
+            .section-card {
+                page-break-inside: avoid;
+            }
+
+            .timeline-item {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Actions / Utilities Navigation -->
+        <div class="actions-bar">
+            <button class="btn-action" id="theme-btn" onclick="toggleTheme()" aria-label="Cambiar Tema">
+                <!-- Sun Icon -->
+                <svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path
+                        d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41">
+                    </path>
+                </svg>
+                <!-- Moon Icon -->
+                <svg class="icon-moon" style="display: none;" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3a6 6 0 009 9 9 9 0 11-9-9z"></path>
+                </svg>
+                <span id="theme-text">Modo Claro</span>
+            </button>
+
+            <button class="btn-action" onclick="window.print()" aria-label="Imprimir CV / Exportar PDF">
+                <!-- Print Icon -->
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"></path>
+                    <path d="M6 9V3a1 1 0 011-1h10a1 1 0 011 1v6"></path>
+                    <rect x="6" y="14" width="12" height="8" rx="1"></rect>
+                </svg>
+                <span>Imprimir / PDF</span>
+            </button>
+        </div>
+
+        <!-- CV Header -->
+        <header class="header-card glass">
+            <div class="header-content">
+                <div class="avatar-wrapper">
+                    <div class="avatar-ring"></div>
+                    <div class="avatar">JC</div>
+                </div>
+                <div class="header-info">
+                    <h1>Juan Carlos Cantillo Suárez</h1>
+                    <div class="title">
+                        <span>Backend Engineer</span>
+                        <span style="opacity: 0.5;">|</span>
+                        <span style="font-weight: 500; font-size: 15px; color: var(--accent);">Cloud • Serverless •
+                            AI</span>
+                    </div>
+                    <div class="subtitle">Especializado en Python, AWS y metodologías de ingeniería asistida por
+                        Inteligencia Artificial</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Grid Layout -->
+        <div class="main-grid">
+
+            <!-- LEFT COLUMN -->
+            <aside class="col-left">
+
+                <!-- Contact Section -->
+                <section class="section-card glass">
+                    <h2 class="section-title">
+                        <!-- User Icon -->
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        Contacto
+                    </h2>
+                    <div class="contact-list">
+
+                        <div class="contact-item" onclick="copyText('Colombia', this)">
+                            <span class="contact-icon">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </span>
+                            <div class="contact-content">
+                                <span class="contact-label">Ubicación</span>
+                                <span class="contact-value">Colombia</span>
+                            </div>
+                            <span class="copy-tooltip">Copiar</span>
+                        </div>
+
+                        <div class="contact-item" onclick="copyText('jccs0602@gmail.com', this)">
+                            <span class="contact-icon">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                    </path>
+                                </svg>
+                            </span>
+                            <div class="contact-content">
+                                <span class="contact-label">Correo</span>
+                                <span class="contact-value">jccs0602@gmail.com</span>
+                            </div>
+                            <span class="copy-tooltip">Copiar</span>
+                        </div>
+
+                        <div class="contact-item" onclick="copyText('+57 316 624 0915', this)">
+                            <span class="contact-icon">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                    </path>
+                                </svg>
+                            </span>
+                            <div class="contact-content">
+                                <span class="contact-label">Teléfono</span>
+                                <span class="contact-value">+57 316 624 0915</span>
+                            </div>
+                            <span class="copy-tooltip">Copiar</span>
+                        </div>
+
+                        <div class="contact-item" onclick="window.open('https://www.linkedin.com/in/juan-carlos-cantillo-su%C3%A1rez-b14b2317a/', '_blank')">
+                            <span class="contact-icon">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z">
+                                    </path>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </span>
+                            <div class="contact-content">
+                                <span class="contact-label">LinkedIn</span>
+                                <span class="contact-value">Ver Perfil</span>
+                            </div>
+                            <span class="copy-tooltip" style="opacity: 0.8;">Abrir</span>
+                        </div>
+
+                        <div class="contact-item" onclick="window.open('https://github.com/JCantillo06', '_blank')">
+                            <span class="contact-icon">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22">
+                                    </path>
+                                </svg>
+                            </span>
+                            <div class="contact-content">
+                                <span class="contact-label">GitHub</span>
+                                <span class="contact-value">Ver Código</span>
+                            </div>
+                            <span class="copy-tooltip" style="opacity: 0.8;">Abrir</span>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Core Skills Section -->
+                <section class="section-card glass">
+                    <h2 class="section-title">
+                        <!-- Target Icon -->
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="2"></circle>
+                        </svg>
+                        Core Skills
+                    </h2>
+                    <div class="skills-list">
+
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-pct">96%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-progress" style="width: 96%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">AWS</span>
+                                <span class="skill-pct">90%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Serverless</span>
+                                <span class="skill-pct">90%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">SQL</span>
+                                <span class="skill-pct">95%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">AI Engineering</span>
+                                <span class="skill-pct">78%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-progress" style="width: 78%"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- AI Engineering Detail -->
+                <section class="section-card glass">
+                    <h2 class="section-title">
+                        <!-- CPU/AI Icon -->
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                            <rect x="9" y="9" width="6" height="6"></rect>
+                            <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"></path>
+                        </svg>
+                        AI Engineering
+                    </h2>
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div class="badges-container">
+                            <span class="badge-chip">Prompt Engineering</span>
+                            <span class="badge-chip">LLMs</span>
+                            <span class="badge-chip">RAG</span>
+                            <span class="badge-chip">MCP</span>
+                            <span class="badge-chip">AI Agents</span>
+                            <span class="badge-chip">Spec Driven Development</span>
+                            <span class="badge-chip">Context Engineering</span>
+                        </div>
+                        <div style="border-top: 1px solid var(--panel-border); padding-top: 12px;">
+                            <p
+                                style="font-size: 11px; text-transform: uppercase; color: var(--text-light); font-weight: 700; margin-bottom: 8px; letter-spacing: 0.5px;">
+                                Ecosistema de Herramientas:</p>
+                            <div class="badges-container">
+                                <span class="badge-chip" style="font-weight: 600;">ChatGPT</span>
+                                <span class="badge-chip" style="font-weight: 600;">Claude</span>
+                                <span class="badge-chip" style="font-weight: 600;">Gemini</span>
+                                <span class="badge-chip" style="font-weight: 600;">Cursor</span>
+                                <span class="badge-chip" style="font-weight: 600;">OpenCode</span>
+                                <span class="badge-chip" style="font-weight: 600;">GitHub Copilot</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Education Section -->
+                <section class="section-card glass">
+                    <h2 class="section-title">
+                        <!-- Academic Hat Icon -->
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                        Educación
+                    </h2>
+                    <div class="education-list">
+
+                        <div class="edu-item">
+                            <div class="edu-degree">Ingeniería de Sistemas</div>
+                            <div class="edu-institution">Universidad Autónoma del Caribe</div>
+                        </div>
+
+                        <div class="edu-item">
+                            <div class="edu-degree">Técnico en Sistemas</div>
+                            <div class="edu-institution">SENA</div>
+                        </div>
+
+                        <div class="edu-item" style="border-left-color: var(--accent);">
+                            <div class="edu-degree">Inglés - Nivel B1</div>
+                            <div class="edu-institution">Intermedio</div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </aside>
+
+            <!-- RIGHT COLUMN -->
+            <main class="col-right">
+
+                <!-- Professional Profile -->
+                <section class="section-card glass">
+                    <h2 class="section-title">
+                        <!-- Award Icon -->
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"></path>
+                        </svg>
+                        Perfil Profesional
+                    </h2>
+                    <div class="profile-card">
+                        Ingeniero de Sistemas especializado en desarrollo backend y arquitectura Cloud/Serverless (AWS) con más de 6 años de experiencia en la industria financiera y de seguros. Experto en optimizar ciclos de desarrollo de software (SDLC) integrando herramientas avanzadas de IA. Enfocado en la creación de soluciones escalables, reducción de costos de infraestructura y entrega acelerada de valor al negocio mediante desarrollo basado en especificaciones (Spec-Driven Development).
+                    </div>
+                </section>
+
+                <!-- Professional Experience -->
+                <section class="section-card glass">
+                    <h2 class="section-title">
+                        <!-- Briefcase Icon -->
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"></path>
+                        </svg>
+                        Experiencia Profesional
+                    </h2>
+
+                    <div class="timeline">
+
+                        <!-- Job 1 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card">
+                                <div class="timeline-header">
+                                    <div>
+                                        <h3 class="timeline-role">Backend Developer Semi Senior</h3>
+                                        <span class="timeline-company">Red 5G</span>
+                                    </div>
+                                    <span class="timeline-date">Sept 2020 – Actualidad</span>
+                                </div>
+                                <ul class="timeline-bullets">
+                                    <li>Desarrollo integral de APIs RESTful de alta transaccionalidad y microservicios
+                                        escalables.</li>
+                                    <li>Diseño e implementación de soluciones e infraestructuras Serverless sobre AWS.
+                                    </li>
+                                    <li>Liderazgo y participación técnica en proyectos de misión crítica para clientes
+                                        corporativos de renombre como Coomeva, Allianz, Positiva, Solidaria, Finsonet y
+                                        A&S.</li>
+                                    <li>Integración continua de servicios cloud de AWS (Lambda, API Gateway, S3,
+                                        Cognito, DynamoDB, CloudWatch) para flujos seguros de negocio.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Job 2 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot" style="border-color: var(--accent-secondary);"></div>
+                            <div class="timeline-card">
+                                <div class="timeline-header">
+                                    <div>
+                                        <h3 class="timeline-role">Auxiliar de Innovación y Desarrollo</h3>
+                                        <span class="timeline-company">ISES S.A.S.</span>
+                                    </div>
+                                    <span class="timeline-date">2019 – 2020</span>
+                                </div>
+                                <ul class="timeline-bullets">
+                                    <li>Desarrollo de software empresarial en C#, bases de datos SQL Server y generación
+                                        de inteligencia de negocio con Reporting Services.</li>
+                                    <li>Ejecución de mantenimiento evolutivo y correctivo sobre sistemas empresariales
+                                        complejos.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Job 3 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot" style="border-color: var(--text-light);"></div>
+                            <div class="timeline-card">
+                                <div class="timeline-header">
+                                    <div>
+                                        <h3 class="timeline-role">Ingeniero de Soporte</h3>
+                                        <span class="timeline-company">Fresenius Medical Care</span>
+                                    </div>
+                                    <span class="timeline-date">2018</span>
+                                </div>
+                                <ul class="timeline-bullets">
+                                    <li>Diagnóstico, soporte técnico y mantenimiento predictivo en infraestructuras
+                                        tecnológicas operativas.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Job 4 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot" style="border-color: var(--text-light);"></div>
+                            <div class="timeline-card">
+                                <div class="timeline-header">
+                                    <div>
+                                        <h3 class="timeline-role">Técnico de Sistemas</h3>
+                                        <span class="timeline-company">Hoteles Decamerón</span>
+                                    </div>
+                                    <span class="timeline-date">2012 – 2013</span>
+                                </div>
+                                <ul class="timeline-bullets">
+                                    <li>Administración y mantenimiento de la infraestructura local de hardware, redes y
+                                        soporte técnico directo a usuarios finales.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Tech Stack / Tecnologías -->
+                <section class="section-card glass">
+                    <h2 class="section-title">
+                        <!-- Layers Icon -->
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                        Tecnologías & Herramientas
+                    </h2>
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div>
+                            <p
+                                style="font-size: 11px; text-transform: uppercase; color: var(--text-light); font-weight: 700; margin-bottom: 8px; letter-spacing: 0.5px;">
+                                Lenguajes de Programación:</p>
+                            <div class="badges-container">
+                                <span class="badge-chip">Python</span>
+                                <span class="badge-chip">PHP</span>
+                                <span class="badge-chip">C#</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p
+                                style="font-size: 11px; text-transform: uppercase; color: var(--text-light); font-weight: 700; margin-bottom: 8px; letter-spacing: 0.5px;">
+                                Cloud & Serverless (AWS):</p>
+                            <div class="badges-container">
+                                <span class="badge-chip">AWS Lambda</span>
+                                <span class="badge-chip">API Gateway</span>
+                                <span class="badge-chip">Amazon S3</span>
+                                <span class="badge-chip">Amazon Cognito</span>
+                                <span class="badge-chip">Amazon DynamoDB</span>
+                                <span class="badge-chip">CloudWatch</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p
+                                style="font-size: 11px; text-transform: uppercase; color: var(--text-light); font-weight: 700; margin-bottom: 8px; letter-spacing: 0.5px;">
+                                Bases de Datos & Entornos:</p>
+                            <div class="badges-container">
+                                <span class="badge-chip">MySQL</span>
+                                <span class="badge-chip">SQL Server</span>
+                                <span class="badge-chip">Git / GitHub</span>
+                                <span class="badge-chip">Pytest (Unit Testing)</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Achievements / Logros -->
+                <section class="section-card glass">
+                    <h2 class="section-title">
+                        <!-- Trophy Icon -->
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6 9H4.5a2.5 2.5 0 010-5H6M18 9h1.5a2.5 2.5 0 000-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34M12 2a6 6 0 016 6v3.5c0 3.3-2.7 6-6 6s-6-2.7-6-6V8a6 6 0 016-6z">
+                            </path>
+                        </svg>
+                        Logros Clave
+                    </h2>
+                    <div class="achievements-grid">
+
+                        <div class="achievement-card">
+                            <span class="achievement-icon">⚡</span>
+                            <div class="achievement-text">Liderazgo técnico en la integración de plataformas de pago y cotizadores de seguros de alta disponibilidad para multinacionales como Allianz y Coomeva.</div>
+                        </div>
+
+                        <div class="achievement-card">
+                            <span class="achievement-icon">☁️</span>
+                            <div class="achievement-text">Migración exitosa de servicios legacy a arquitecturas Serverless en AWS, logrando reducir costos mensuales de infraestructura.</div>
+                        </div>
+
+                        <div class="achievement-card">
+                            <span class="achievement-icon">🤖</span>
+                            <div class="achievement-text">Reducción de hasta un 30% en el tiempo de entrega (Time-to-Market) de nuevas funcionalidades mediante la adopción de desarrollo asistido por IA (Spec-Driven Development, Cursor, Agentes).</div>
+                        </div>
+
+                        <div class="achievement-card">
+                            <span class="achievement-icon">🔒</span>
+                            <div class="achievement-text">Construcción y despliegue de APIs RESTful y microservicios escalables para proyectos de misión crítica del sector financiero y asegurador.</div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Featured Course / Curso Destacado -->
+                <section class="section-card glass">
+                    <h2 class="section-title">
+                        <!-- BookOpen Icon -->
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                            </path>
+                        </svg>
+                        Curso de Especialización Destacado
+                    </h2>
+                    <div class="featured-course">
+                        <h3 class="course-header">Desarrollo con IA – Programa con Agentes</h3>
+                        <p class="course-description">
+                            Formación avanzada enfocada en desarrollo "AI-first", optimización de flujos de trabajo con
+                            Prompt Engineering, integración de LLMs, implementación de Model Context Protocol (MCP),
+                            arquitecturas RAG, desarrollo de Agentes de IA autónomos y metodologías de Spec-Driven
+                            Development.
+                        </p>
+                    </div>
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+    <!-- JavaScript For Interactions -->
+    <script>
+        // Theme toggling functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            html.setAttribute('data-theme', newTheme);
+
+            const themeText = document.getElementById('theme-text');
+            const sunIcon = document.querySelector('.icon-sun');
+            const moonIcon = document.querySelector('.icon-moon');
+
+            if (newTheme === 'light') {
+                themeText.innerText = 'Modo Oscuro';
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline-block';
+            } else {
+                themeText.innerText = 'Modo Claro';
+                sunIcon.style.display = 'inline-block';
+                moonIcon.style.display = 'none';
+            }
+        }
+
+        // Contact copying utility
+        function copyText(text, element) {
+            navigator.clipboard.writeText(text).then(() => {
+                const tooltip = element.querySelector('.copy-tooltip');
+                if (!tooltip) return;
+
+                const originalText = tooltip.innerText;
+                tooltip.innerText = '¡Copiado!';
+                tooltip.style.opacity = '1';
+                element.classList.add('highlight-flash');
+
+                setTimeout(() => {
+                    tooltip.innerText = originalText;
+                    tooltip.style.opacity = '';
+                    element.classList.remove('highlight-flash');
+                }, 1800);
+            }).catch(err => {
+                console.error('Error al copiar texto: ', err);
+            });
+        }
+    </script>
+</body>
+
+</html>
