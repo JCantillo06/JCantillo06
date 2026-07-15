@@ -22,14 +22,6 @@ Ingeniero de Sistemas apasionado por construir APIs escalables, infraestructuras
 
 ---
 
-### 📊 Estadísticas de GitHub
-*(Nota: Los widgets dinámicos a continuación se renderizan en vivo cuando subas este archivo a tu perfil de GitHub.com).*
-
-<img src="https://github-readme-stats.vercel.app/api?username=JCantillo06&show_icons=true&theme=tokyonight&count_private=true" alt="Stats de Juan Carlos" />
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=JCantillo06&layout=compact&theme=tokyonight" alt="Lenguajes más usados" />
-
----
-
 ### 📬 Contacto
 
 - **LinkedIn:** [Juan Carlos Cantillo](https://www.linkedin.com/in/juan-carlos-cantillo-su%C3%A1rez-b14b2317a/)
