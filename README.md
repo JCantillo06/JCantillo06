@@ -8,7 +8,7 @@ Ingeniero de Sistemas apasionado por construir APIs escalables, infraestructuras
 
 ### 🌐 Mi Portafolio y CV
 
-*   **[🔗 VER MI CV INTERACTIVO EN LÍNEA](https://jcantillo06.github.io/JCantillo06/)** (Puedes alternar entre modo claro/oscuro e imprimirlo a PDF directamente desde el navegador).
+*   **[🔗 VER MI CV INTERACTIVO EN LÍNEA](https://j-cantillo06.vercel.app/)** (Puedes alternar entre modo claro/oscuro e imprimirlo a PDF directamente desde el navegador).
 
 ---
 
