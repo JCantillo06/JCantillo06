@@ -107,6 +107,14 @@
             border-radius: 20px;
         }
 
+        .print-only {
+            display: none !important;
+        }
+
+        .screen-only {
+            display: inline;
+        }
+
         /* NAVBAR / ACTIONS */
         .actions-bar {
             display: flex;
@@ -178,28 +186,34 @@
         }
 
         .avatar {
-            width: 100px;
-            height: 100px;
+            width: 104px;
+            height: 104px;
             border-radius: 24px;
-            background: var(--accent-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-family: 'Outfit', sans-serif;
-            font-size: 38px;
-            font-weight: 800;
+            object-fit: cover;
+            display: block;
             box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.4);
-            letter-spacing: -1px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] .avatar {
+            border-color: rgba(15, 23, 42, 0.1);
+            box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.25);
+        }
+
+        .avatar-wrapper:hover .avatar {
+            transform: scale(1.04);
+            box-shadow: 0 14px 28px -4px rgba(56, 189, 248, 0.5);
         }
 
         .avatar-ring {
             position: absolute;
             inset: -6px;
             border: 2px solid var(--accent);
-            opacity: 0.3;
+            opacity: 0.35;
             border-radius: 28px;
             animation: spin 20s linear infinite;
+            pointer-events: none;
         }
 
         @keyframes spin {
@@ -703,11 +717,9 @@
             .avatar {
                 width: 80px !important;
                 height: 80px !important;
-                font-size: 30px !important;
                 border-radius: 16px !important;
-                background: #0f172a !important;
-                color: #fff !important;
                 box-shadow: none !important;
+                border: 1px solid #cbd5e1 !important;
             }
 
             .avatar-ring {
@@ -760,6 +772,19 @@
 
             .contact-icon {
                 color: #0f172a !important;
+            }
+
+            .print-only {
+                display: inline !important;
+            }
+
+            .screen-only {
+                display: none !important;
+            }
+
+            .contact-value {
+                font-size: 11px !important;
+                word-break: break-all !important;
             }
 
             .skill-track {
@@ -909,7 +934,7 @@
             <div class="header-content">
                 <div class="avatar-wrapper">
                     <div class="avatar-ring"></div>
-                    <div class="avatar">JC</div>
+                    <img src="avatar.jpg" alt="Juan Carlos Cantillo Suárez" class="avatar">
                 </div>
                 <div class="header-info">
                     <h1>Juan Carlos Cantillo Suárez</h1>
@@ -991,7 +1016,8 @@
                             <span class="copy-tooltip">Copiar</span>
                         </div>
 
-                        <div class="contact-item" onclick="window.open('https://www.linkedin.com/in/juan-carlos-cantillo-su%C3%A1rez-b14b2317a/', '_blank')">
+                        <div class="contact-item"
+                            onclick="window.open('https://www.linkedin.com/in/juan-carlos-cantillo-su%C3%A1rez-b14b2317a/', '_blank')">
                             <span class="contact-icon">
                                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -1003,7 +1029,11 @@
                             </span>
                             <div class="contact-content">
                                 <span class="contact-label">LinkedIn</span>
-                                <span class="contact-value">Ver Perfil</span>
+                                <span class="contact-value">
+                                    <span class="screen-only">Ver Perfil</span>
+                                    <span
+                                        class="print-only">linkedin.com/in/juan-carlos-cantillo-suárez-b14b2317a</span>
+                                </span>
                             </div>
                             <span class="copy-tooltip" style="opacity: 0.8;">Abrir</span>
                         </div>
@@ -1019,7 +1049,10 @@
                             </span>
                             <div class="contact-content">
                                 <span class="contact-label">GitHub</span>
-                                <span class="contact-value">Ver Código</span>
+                                <span class="contact-value">
+                                    <span class="screen-only">Ver Código</span>
+                                    <span class="print-only">github.com/JCantillo06</span>
+                                </span>
                             </div>
                             <span class="copy-tooltip" style="opacity: 0.8;">Abrir</span>
                         </div>
@@ -1178,7 +1211,11 @@
                         Perfil Profesional
                     </h2>
                     <div class="profile-card">
-                        Ingeniero de Sistemas especializado en desarrollo backend y arquitectura Cloud/Serverless (AWS) con más de 6 años de experiencia en la industria financiera y de seguros. Experto en optimizar ciclos de desarrollo de software (SDLC) integrando herramientas avanzadas de IA. Enfocado en la creación de soluciones escalables, reducción de costos de infraestructura y entrega acelerada de valor al negocio mediante desarrollo basado en especificaciones (Spec-Driven Development).
+                        Ingeniero de Sistemas especializado en desarrollo backend y arquitectura Cloud/Serverless (AWS)
+                        con más de 7 años de experiencia en la industria financiera y de seguros. Experto en optimizar
+                        ciclos de desarrollo de software (SDLC) integrando herramientas avanzadas de IA. Enfocado en la
+                        creación de soluciones escalables, reducción de costos de infraestructura y entrega acelerada de
+                        valor al negocio mediante desarrollo basado en especificaciones (Spec-Driven Development).
                     </div>
                 </section>
 
@@ -1346,22 +1383,28 @@
 
                         <div class="achievement-card">
                             <span class="achievement-icon">⚡</span>
-                            <div class="achievement-text">Liderazgo técnico en la integración de plataformas de pago y cotizadores de seguros de alta disponibilidad para multinacionales como Allianz y Coomeva.</div>
+                            <div class="achievement-text">Liderazgo técnico en la integración de plataformas de pago y
+                                cotizadores de seguros de alta disponibilidad para multinacionales como Allianz y
+                                Coomeva.</div>
                         </div>
 
                         <div class="achievement-card">
                             <span class="achievement-icon">☁️</span>
-                            <div class="achievement-text">Migración exitosa de servicios legacy a arquitecturas Serverless en AWS, logrando reducir costos mensuales de infraestructura.</div>
+                            <div class="achievement-text">Migración exitosa de servicios legacy a arquitecturas
+                                Serverless en AWS, logrando reducir costos mensuales de infraestructura.</div>
                         </div>
 
                         <div class="achievement-card">
                             <span class="achievement-icon">🤖</span>
-                            <div class="achievement-text">Reducción de hasta un 30% en el tiempo de entrega (Time-to-Market) de nuevas funcionalidades mediante la adopción de desarrollo asistido por IA (Spec-Driven Development, Cursor, Agentes).</div>
+                            <div class="achievement-text">Reducción de hasta un 30% en el tiempo de entrega
+                                (Time-to-Market) de nuevas funcionalidades mediante la adopción de desarrollo asistido
+                                por IA (Spec-Driven Development, Cursor, Agentes).</div>
                         </div>
 
                         <div class="achievement-card">
                             <span class="achievement-icon">🔒</span>
-                            <div class="achievement-text">Construcción y despliegue de APIs RESTful y microservicios escalables para proyectos de misión crítica del sector financiero y asegurador.</div>
+                            <div class="achievement-text">Construcción y despliegue de APIs RESTful y microservicios
+                                escalables para proyectos de misión crítica del sector financiero y asegurador.</div>
                         </div>
 
                     </div>
